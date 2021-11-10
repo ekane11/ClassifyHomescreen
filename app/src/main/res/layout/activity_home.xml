@@ -5,11 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Home">
 
 
     <Button
         android:id="@+id/other"
+        android:onClick="otherClick"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentStart="true"
@@ -21,6 +22,7 @@
 
     <Button
         android:id="@+id/work"
+        android:onClick="workClick"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
@@ -35,6 +37,7 @@
 
     <Button
         android:id="@+id/social"
+        android:onClick="socialClick"
         android:layout_width="413dp"
         android:layout_height="72dp"
         android:layout_alignParentStart="true"
@@ -49,6 +52,7 @@
 
     <Button
         android:id="@+id/extracurricular"
+        android:onClick="extracurricularClick"
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:layout_alignParentStart="true"
@@ -62,6 +66,7 @@
 
     <Button
         android:id="@+id/academic"
+        android:onClick="academicClick"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentStart="true"
@@ -76,5 +81,30 @@
         android:id="@+id/bottom_navigation"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/profile"
+        android:onClick="profileClick"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/ic_user"
+        android:backgroundTint="#000000"
+        app:iconTint="#000000" />
+
+    <Button
+        android:id="@+id/notification"
+        android:onClick="notificationsClick"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/ic_notification" />
+
 
 </RelativeLayout>
