@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClassifyHomescreen">
         <activity
+            android:name=".WorkEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SocialEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SchoolEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExtraEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".Calendar"
             android:exported="true" />
         <activity

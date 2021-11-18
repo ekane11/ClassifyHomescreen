@@ -48,30 +48,31 @@ public class Home extends AppCompatActivity {
      * change "xxx.class" to match different classes
      **/
     public void academicClick(View view){
-        //Intent intent = new Intent(this, Academic.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, SchoolEventsActivity.class);
+        startActivity(intent);
     }
 
     public void extracurricularClick(View view){
-        //Intent intent = new Intent(this, Extrcurricular.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ExtraEventsActivity.class);
+        startActivity(intent);
 
     }
 
     public void socialClick(View view){
-        //Intent intent = new Intent(this, social.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, SocialEventsActivity.class);
+        startActivity(intent);
     }
 
     public void workClick(View view){
-        //Intent intent = new Intent(this, work.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, WorkEventsActivity.class);
+        startActivity(intent);
     }
-
+/**
     public void otherClick(View view){
-        //Intent intent = new Intent(this, other.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, other.class);
+        startActivity(intent);
     }
+ **/
 
     public void profileClick(View view){
         //Intent intent = new Intent(this, Profile.class);

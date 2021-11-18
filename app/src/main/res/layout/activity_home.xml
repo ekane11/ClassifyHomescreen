@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/other"
-        android:onClick="otherClick"
+
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentStart="true"
@@ -84,7 +84,6 @@
 
     <Button
         android:id="@+id/profile"
-        android:onClick="profileClick"
         android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -93,18 +92,21 @@
         android:layout_marginTop="7dp"
         android:background="@drawable/ic_user"
         android:backgroundTint="#000000"
-        app:iconTint="#000000" />
+        android:onClick="profileClick"
+        app:iconTint="#000000"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/notification"
-        android:onClick="notificationsClick"
         android:layout_width="54dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="5dp"
-        android:background="@drawable/ic_notification" />
+        android:background="@drawable/ic_notification"
+        android:onClick="notificationsClick"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </RelativeLayout>

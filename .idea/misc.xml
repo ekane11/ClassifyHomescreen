@@ -4,9 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/drawable/ic_home.xml" value="0.2703125" />
+        <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_add_event.xml" value="0.264" />
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_calendar.xml" value="0.264" />
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_dashboard.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_extra_events.xml" value="0.11481481481481481" />
+        <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_home.xml" value="0.1693840579710145" />
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_school_events.xml" value="0.11481481481481481" />
+        <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_social_events.xml" value="0.11481481481481481" />
+        <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_work_events.xml" value="0.11481481481481481" />
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/menu/ic_home.xml" value="0.14537037037037037" />
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/menu/menu_navigation.xml" value="0.1" />
         <entry key="..\:/Users/erinm/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/menu/options.xml" value="0.25416666666666665" />
