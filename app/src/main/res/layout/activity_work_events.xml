@@ -8,8 +8,8 @@
 
     <ListView
         android:id="@+id/workEventsList"
-        android:layout_width="412dp"
-        android:layout_height="595dp"
+        android:layout_width="378dp"
+        android:layout_height="534dp"
         app:layout_constraintBottom_toTopOf="@+id/addEventButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
