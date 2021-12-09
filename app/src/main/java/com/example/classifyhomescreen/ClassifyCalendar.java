@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Calendar extends AppCompatActivity {
+public class ClassifyCalendar extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

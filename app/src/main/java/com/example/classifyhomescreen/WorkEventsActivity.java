@@ -46,8 +46,9 @@ public class WorkEventsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+
 
     public void onAddButtonClick(View v) {
         Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);

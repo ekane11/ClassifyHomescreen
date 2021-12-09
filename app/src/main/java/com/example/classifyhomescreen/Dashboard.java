@@ -31,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
                     return true;
                 case R.id.calendar:
                     startActivity(new Intent(getApplicationContext()
-                            ,Calendar.class));
+                            , ClassifyCalendar.class));
                     overridePendingTransition(0,0);
                     return true;
             }

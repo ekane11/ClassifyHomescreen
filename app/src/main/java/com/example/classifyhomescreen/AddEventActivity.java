@@ -2,33 +2,71 @@ package com.example.classifyhomescreen;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddEventActivity extends AppCompatActivity {
 
     private int noteid = -1;
+    DatePickerDialog picker;
+    Button date_button;
+    EditText dateText;
+    EditText locationText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-        EditText dateText = (EditText) findViewById(R.id.dateText);
-        EditText locationText = (EditText) findViewById(R.id.locationText);
+
         Intent intent = getIntent();
         noteid = intent.getIntExtra("noteid", -1);
         String str = intent.getStringExtra("type");
+
+        dateText = (EditText) findViewById(R.id.dateText);
+        locationText = (EditText) findViewById(R.id.locationText);
+        dateText.setInputType(InputType.TYPE_NULL);
+
+        dateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(AddEventActivity.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dateText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
+        /*date_button =(Button)findViewById(R.id.dateButton);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvw.setText("Selected Date: "+ eText.getText());
+            }
+        });*/
 
         if(noteid != -1) {
             if(str.equals("work")) {
@@ -71,5 +109,13 @@ public class AddEventActivity extends AppCompatActivity {
 
     public void onBack(View v) {
         finish();
+    }
+
+    public void onDate(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datepicker");
+    }
+    public void onTime(View v) {
+
     }
 }

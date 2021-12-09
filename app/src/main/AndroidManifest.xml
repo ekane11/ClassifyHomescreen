@@ -25,7 +25,7 @@
             android:name=".AddEventActivity"
             android:exported="false" />
         <activity
-            android:name=".Calendar"
+            android:name=".ClassifyCalendar"
             android:exported="true" />
         <activity
             android:name=".Dashboard"
