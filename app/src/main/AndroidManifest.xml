@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClassifyHomescreen">
         <activity
+            android:name=".Profile"
+            android:exported="true" />
+        <activity
+            android:name=".CreateAccount"
+            android:exported="true" />
+        <activity
+            android:name=".Home"
+            android:exported="true" />
+        <activity
+            android:name=".Alerts"
+            android:exported="true" />
+        <activity
             android:name=".WorkEventsActivity"
             android:exported="false" />
         <activity
@@ -25,13 +37,13 @@
             android:name=".AddEventActivity"
             android:exported="false" />
         <activity
-            android:name=".Calendar"
+            android:name=".ClassifyCalendar"
             android:exported="true" />
         <activity
             android:name=".Dashboard"
             android:exported="true" />
         <activity
-            android:name=".Home"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

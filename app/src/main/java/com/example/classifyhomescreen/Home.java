@@ -34,7 +34,7 @@ public class Home extends AppCompatActivity {
                     return true;
                 case R.id.calendar:
                     startActivity(new Intent(getApplicationContext()
-                            ,Calendar.class));
+                            , ClassifyCalendar.class));
                     overridePendingTransition(0,0);
                     return true;
             }
@@ -75,13 +75,13 @@ public class Home extends AppCompatActivity {
  **/
 
     public void profileClick(View view){
-        //Intent intent = new Intent(this, Profile.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
     }
 
     public void notificationsClick(View view){
-        //Intent intent = new Intent(this, Notifications.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Alerts.class);
+        startActivity(intent);
     }
 
 }
