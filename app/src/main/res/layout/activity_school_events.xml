@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WorkEventsActivity">
+    tools:context=".SchoolEventsActivity">
 
     <ListView
-        android:id="@+id/workEventsList"
-        android:layout_width="412dp"
-        android:layout_height="595dp"
-        app:layout_constraintBottom_toTopOf="@+id/addEventButton"
+        android:id="@+id/schoolEventsList"
+        android:layout_width="378dp"
+        android:layout_height="575dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -20,7 +21,7 @@
         android:layout_width="408dp"
         android:layout_height="48dp"
         android:layout_marginBottom="4dp"
-        android:backgroundTint="#7D3B9F"
+        android:backgroundTint="#690EC3"
         android:fontFamily="sans-serif-black"
         android:onClick="onAddButtonClick"
         android:text="Add Event"
@@ -34,13 +35,13 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="243dp"
-        android:layout_height="46dp"
+        android:layout_width="220dp"
+        android:layout_height="53dp"
         android:layout_marginTop="4dp"
-        android:text="Academic Events"
+        android:text="School Events"
         android:textAlignment="center"
-        android:textColor="#7D3B9F"
-        android:textSize="30sp"
+        android:textColor="#690EC3"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,13 +51,13 @@
         android:id="@+id/button2"
         android:layout_width="83dp"
         android:layout_height="45dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="#4C4B4B"
         android:onClick="onBack"
         android:text="Back"
         app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

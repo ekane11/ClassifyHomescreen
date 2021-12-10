@@ -28,10 +28,16 @@ public class WorkEventsActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(sqLiteDatabase);
         events = dbHelper.readNotes("username");
 
+
         ArrayList<String> displayEvents = new ArrayList<>();
+        ArrayList<Event> workEvents = new ArrayList<Event>();
         for(Event event: events) {
-            displayEvents.add(String.format("Location:%s\nDate:%s", event.getLocation(), event.getDate()));
+            if (event.getType().equals("work")) {
+                displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
+                workEvents.add(event);
+            }
         }
+
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, displayEvents);
         ListView listView = (ListView) findViewById(R.id.workEventsList);
@@ -41,16 +47,19 @@ public class WorkEventsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
+                int num = workEvents.get(position).getNum();
                 intent.putExtra("noteid", position);
+                intent.putExtra("note_num", num);
                 intent.putExtra("type", "work");
+                //System.out.println(num);
                 startActivity(intent);
             }
         });
-
     }
 
     public void onAddButtonClick(View v) {
         Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
+        intent.putExtra("type", "work");
         startActivity(intent);
     }
 

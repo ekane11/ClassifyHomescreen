@@ -7,11 +7,12 @@
     tools:context=".WorkEventsActivity">
 
     <ListView
-        android:id="@+id/workEventsList"
-        android:layout_width="412dp"
-        android:layout_height="595dp"
-        app:layout_constraintBottom_toTopOf="@+id/addEventButton"
+        android:id="@+id/extraEventsList"
+        android:layout_width="378dp"
+        android:layout_height="575dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -20,7 +21,7 @@
         android:layout_width="408dp"
         android:layout_height="48dp"
         android:layout_marginBottom="4dp"
-        android:backgroundTint="#DA4B08"
+        android:backgroundTint="#E16E22"
         android:fontFamily="sans-serif-black"
         android:onClick="onAddButtonClick"
         android:text="Add Event"
@@ -34,13 +35,13 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="231dp"
-        android:layout_height="81dp"
+        android:layout_width="220dp"
+        android:layout_height="53dp"
         android:layout_marginTop="4dp"
         android:text="Extracurricular Events"
         android:textAlignment="center"
-        android:textColor="#DA4B08"
-        android:textSize="29sp"
+        android:textColor="#E16E22"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +51,7 @@
         android:id="@+id/button2"
         android:layout_width="83dp"
         android:layout_height="45dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="#4C4B4B"
         android:onClick="onBack"
