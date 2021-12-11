@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,14 +60,41 @@ public class Dashboard extends AppCompatActivity {
         events = dbHelper.readNotes("username");
 
         ArrayList<String> displayEvents = new ArrayList<>();
+        ArrayList<DateItem> dateList = new ArrayList<>();
+        ArrayList<String> orgDateOrder = new ArrayList<>();
         for(Event event: events) {
-
             displayEvents.add(String.format("Title:%s\nDate:%s", event.getTitle(), event.getDate()));
+            Log.d("event date: ", event.getDate());
+            dateList.add(new DateItem (event.getDate()));
+            orgDateOrder.add(event.getDate());
         }
 
 
+        Collections.sort(dateList, new sortItems());
+        ArrayList<String> finalDisplay = new ArrayList<>();
+        for(int i = 0; i < dateList.size(); i++){
+            String str = dateList.get(i).returnDate();
+            Log.d("dates", str);
+        }
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, displayEvents);
+        for(int i = 0; i < dateList.size(); i++) {
+            for (int j = 0; j < displayEvents.size();j++){
+                //create new array to store dates but don't change order?
+                //then compare
+                String fullDate = orgDateOrder.get(j);
+                String str [] = fullDate.split("/");
+                String month = str[0];
+                String day = str[1];
+                String year = str[2];
+                String formatDate = year+"-"+month+"-"+day;
+                if(dateList.get(i).returnDate().equals(formatDate)){
+                    finalDisplay.add(displayEvents.get(j));
+                }
+            }
+        }
+
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, finalDisplay);
         ListView listView = findViewById(R.id.DashListView);
         listView.setAdapter(adapter);
 
