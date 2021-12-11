@@ -15,6 +15,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.Calendar;
 
 public class AddEventActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class AddEventActivity extends AppCompatActivity {
     EditText locationText;
     EditText titleText;
     EditText timeText;
+    EditText friendText;
     String type;
 
     @Override
@@ -45,6 +48,8 @@ public class AddEventActivity extends AppCompatActivity {
         locationText = (EditText) findViewById(R.id.locationText);
         titleText = (EditText) findViewById(R.id.titleText);
         timeText = (EditText) findViewById(R.id.timeText);
+        friendText = (EditText) findViewById(R.id.friendText);
+
 
         dateText.setInputType(InputType.TYPE_NULL);
         dateText.setOnClickListener(new View.OnClickListener() {
@@ -119,44 +124,60 @@ public class AddEventActivity extends AppCompatActivity {
 
     public void onButtonClick(View v) {
 
+        boolean datePresent = true;
         String date = dateText.getText().toString();
         String location = locationText.getText().toString();
         String title = titleText.getText().toString();
         String time = timeText.getText().toString();
+        String email = friendText.getText().toString();
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events", Context.MODE_PRIVATE,null);
 
         DBHelper dbHelper = new DBHelper(sqLiteDatabase);
 
+        if(date.length() < 8) {
+            datePresent = false;
+        }
+
         System.out.println("n:"+note_count);
-        if(noteid == -1) {
+        if(noteid == -1 && datePresent) {
+            //send email to friend functionality should go here (email variable contains the email of friend)
+
             dbHelper.saveEvent("username", date, location, time, title, type, total_num_notes);
             System.out.println("t:"+total_num_notes);
             total_num_notes++;
         } else {
-            dbHelper.updateEvent("username", date, location, time, title, type, note_count);
+            if(datePresent) {
+                dbHelper.updateEvent("username", date, location, time, title, type, note_count);
+            }
         }
 
-        Intent intent = null;
-        switch (type) {
-            case "extra":
-                intent = new Intent(getApplicationContext(), ExtraEventsActivity.class);
-                startActivity(intent);
-                break;
-            case "school":
-                intent = new Intent(getApplicationContext(), SchoolEventsActivity.class);
-                startActivity(intent);
-                break;
-            case "social":
-                intent = new Intent(getApplicationContext(), SocialEventsActivity.class);
-                startActivity(intent);
-                break;
-            case "work":
-                intent = new Intent(getApplicationContext(), WorkEventsActivity.class);
-                startActivity(intent);
-                break;
+        if(datePresent) {
+            Intent intent = null;
+            switch (type) {
+                case "extra":
+                    intent = new Intent(getApplicationContext(), ExtraEventsActivity.class);
+                    startActivity(intent);
+                    break;
+                case "school":
+                    intent = new Intent(getApplicationContext(), SchoolEventsActivity.class);
+                    startActivity(intent);
+                    break;
+                case "social":
+                    intent = new Intent(getApplicationContext(), SocialEventsActivity.class);
+                    startActivity(intent);
+                    break;
+                case "work":
+                    intent = new Intent(getApplicationContext(), WorkEventsActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+        } else {
+            Snackbar mySnackbar = Snackbar.make(v, "please enter a date", 1000);
+            mySnackbar.show();
         }
+
     }
 
     public void onBack(View v) {
