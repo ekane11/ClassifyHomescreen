@@ -13,6 +13,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TimePicker;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -31,6 +32,7 @@ public class AddEventActivity extends AppCompatActivity {
     EditText titleText;
     EditText timeText;
     EditText friendText;
+    Switch alertText;
     String type;
 
     @Override
@@ -49,6 +51,7 @@ public class AddEventActivity extends AppCompatActivity {
         titleText = (EditText) findViewById(R.id.titleText);
         timeText = (EditText) findViewById(R.id.timeText);
         friendText = (EditText) findViewById(R.id.friendText);
+        alertText = (Switch) findViewById(R.id.alert_toggle);
 
 
         dateText.setInputType(InputType.TYPE_NULL);
@@ -130,6 +133,7 @@ public class AddEventActivity extends AppCompatActivity {
         String title = titleText.getText().toString();
         String time = timeText.getText().toString();
         String email = friendText.getText().toString();
+        boolean alert = alertText.isChecked();
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events", Context.MODE_PRIVATE,null);
@@ -143,6 +147,11 @@ public class AddEventActivity extends AppCompatActivity {
         System.out.println("n:"+note_count);
         if(noteid == -1 && datePresent) {
             //send email to friend functionality should go here (email variable contains the email of friend)
+            //alert stuff goes here too
+            if(alert) {
+
+            }
+
 
             dbHelper.saveEvent("username", date, location, time, title, type, total_num_notes);
             System.out.println("t:"+total_num_notes);
