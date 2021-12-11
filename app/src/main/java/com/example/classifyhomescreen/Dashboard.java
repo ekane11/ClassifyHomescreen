@@ -62,20 +62,18 @@ public class Dashboard extends AppCompatActivity {
         ArrayList<String> displayEvents = new ArrayList<>();
         ArrayList<DateItem> dateList = new ArrayList<>();
         ArrayList<String> orgDateOrder = new ArrayList<>();
+        ArrayList<Event> clickEvents = new ArrayList<>();
+        ArrayList<Event> clickEvents2 = new ArrayList<>();
         for(Event event: events) {
-            displayEvents.add(String.format("Title:%s\nDate:%s", event.getTitle(), event.getDate()));
-            Log.d("event date: ", event.getDate());
-            dateList.add(new DateItem (event.getDate()));
-            orgDateOrder.add(event.getDate());
-        }
+                displayEvents.add(String.format("Title:%s\nDate:%s", event.getTitle(), event.getDate()));
+                    dateList.add(new DateItem(event.getDate()));
+                    orgDateOrder.add(event.getDate());
+                    clickEvents.add(event);
 
+        }
 
         Collections.sort(dateList, new sortItems());
         ArrayList<String> finalDisplay = new ArrayList<>();
-        for(int i = 0; i < dateList.size(); i++){
-            String str = dateList.get(i).returnDate();
-            Log.d("dates", str);
-        }
 
         for(int i = 0; i < dateList.size(); i++) {
             for (int j = 0; j < displayEvents.size();j++){
@@ -89,6 +87,8 @@ public class Dashboard extends AppCompatActivity {
                 String formatDate = year+"-"+month+"-"+day;
                 if(dateList.get(i).returnDate().equals(formatDate)){
                     finalDisplay.add(displayEvents.get(j));
+                    clickEvents2.add(clickEvents.get(j));
+
                 }
             }
         }
@@ -102,8 +102,12 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
-                intent.putExtra("noteid", position);
-                intent.putExtra("type", "work");
+                int num = clickEvents2.get(position).getNum();
+                String type = clickEvents2.get(position).getType();
+                intent.putExtra("noteid", position); //in the list of separate categories
+                intent.putExtra("note_num", num); //position in entire event
+                intent.putExtra("type", type);
+                //System.out.println(num);
                 startActivity(intent);
             }
         });

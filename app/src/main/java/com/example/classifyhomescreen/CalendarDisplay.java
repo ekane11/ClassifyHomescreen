@@ -38,10 +38,12 @@ public class CalendarDisplay extends AppCompatActivity {
         events = dbHelper.readNotes("username");
 
         ArrayList<String> displayEvents = new ArrayList<>();
+        ArrayList<Event> clickEvents = new ArrayList<>();
         for(Event event: events){
             //Find out what other data to display
             if(event.getDate().equals(date)) {
                 displayEvents.add(String.format("Title:%s", event.getTitle()));
+                clickEvents.add(event);
             }
         }
 
@@ -54,8 +56,12 @@ public class CalendarDisplay extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
-                intent.putExtra("noteid", position);
-                intent.putExtra("type", "work");
+                int num = clickEvents.get(position).getNum();
+                String type = clickEvents.get(position).getType();
+                intent.putExtra("noteid", position); //in the list of separate categories
+                intent.putExtra("note_num", num); //position in entire event
+                intent.putExtra("type", type);
+                //System.out.println(num);
                 startActivity(intent);
             }
         });
