@@ -7,8 +7,6 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.Calendar;
-
 public class Dashboard extends AppCompatActivity {
 
     @Override
@@ -33,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
                     return true;
                 case R.id.calendar:
                     startActivity(new Intent(getApplicationContext()
-                            , Calendar.class));
+                            ,Calendar.class));
                     overridePendingTransition(0,0);
                     return true;
             }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,8 +49,8 @@ public class WorkEventsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
                 int num = workEvents.get(position).getNum();
-                intent.putExtra("noteid", position);
-                intent.putExtra("note_num", num);
+                intent.putExtra("noteid", position); //in the list of separate categories
+                intent.putExtra("note_num", num); //position in entire event
                 intent.putExtra("type", "work");
                 //System.out.println(num);
                 startActivity(intent);
