@@ -39,10 +39,9 @@ public class CalendarDisplay extends AppCompatActivity {
 
         ArrayList<String> displayEvents = new ArrayList<>();
         for(Event event: events){
-            //Add in title
             //Find out what other data to display
-            if(event.getDate() == date) {
-                displayEvents.add(String.format("Title:%s", event.getLocation()));
+            if(event.getDate().equals(date)) {
+                displayEvents.add(String.format("Title:%s", event.getTitle()));
             }
         }
 
