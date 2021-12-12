@@ -33,15 +33,8 @@ public class Login extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         onStart();
-        getEmailPassword();
     }
 
-    private void getEmailPassword() {
-        email = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        email1 = email.getText().toString();
-        password1 = password.getText().toString();
-    }
 
     @Override
     public void onStart() {
@@ -61,6 +54,12 @@ public class Login extends AppCompatActivity {
 
     // this takes to the home page
     public void clickFunction2(View view){
+
+        email = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+        email1 = email.getText().toString();
+        password1 = password.getText().toString();
+
         mAuth.signInWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -86,7 +85,7 @@ public class Login extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null){
-            Intent intent = new Intent(this, Login.class);
+            Intent intent = new Intent(this, Home.class);
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "Not logged in properly.", Toast.LENGTH_SHORT).show();

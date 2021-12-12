@@ -28,6 +28,7 @@ public class CreateAccount extends AppCompatActivity {
     EditText password2;
     String email1;
     String password1;
+    String password3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class CreateAccount extends AppCompatActivity {
 //            return;
 //        }
         email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
 
         if (password.length() < 6){
             Toast.makeText(getApplicationContext(), "Password needs to be at least 6 characters.", Toast.LENGTH_SHORT).show();
@@ -63,12 +64,15 @@ public class CreateAccount extends AppCompatActivity {
         }
 
         password2 = (EditText) findViewById(R.id.passwordCorrect);
-        if (!password.equals(password2)){
-            Toast.makeText(getApplicationContext(), "Passwords do not match.", Toast.LENGTH_SHORT).show();
-            return;
-        }
         email1 = email.getText().toString();
         password1 = password.getText().toString();
+        password3 = password2.getText().toString();
+
+        if (!password1.equals(password3)){
+            Toast.makeText(getApplicationContext(), "Passwords do not match." + password + " " + password2, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -78,13 +82,13 @@ public class CreateAccount extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
+                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(CreateAccount.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            updateUI(null);
                         }
                     }
                 });

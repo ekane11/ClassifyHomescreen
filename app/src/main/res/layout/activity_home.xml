@@ -85,15 +85,15 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/notification"
-        android:layout_width="54dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/logout"
+        android:layout_width="106dp"
+        android:layout_height="64dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/ic_notification"
-        android:onClick="notificationsClick"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="1dp"
+        android:onClick="logoutClick"
+        android:text="Logout"
         tools:ignore="SpeakableTextPresentCheck" />
 
 

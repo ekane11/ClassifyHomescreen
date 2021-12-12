@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Home extends AppCompatActivity {
 
@@ -79,8 +80,9 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void notificationsClick(View view){
-        Intent intent = new Intent(this, Alerts.class);
+    public void logoutClick(View view){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

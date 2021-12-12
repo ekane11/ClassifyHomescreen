@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "569626747659",
+    "project_id": "classify-a1dbd",
+    "storage_bucket": "classify-a1dbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569626747659:android:e0fca20f107d6c65fff80e",
+        "android_client_info": {
+          "package_name": "com.example.classifyhomescreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569626747659-s50r0ltdcmfmcs5rulmmuk3c9oqpfs4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8m_wl6B8QkaMHWyk-VLUar9cF9H-QW94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569626747659-s50r0ltdcmfmcs5rulmmuk3c9oqpfs4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
