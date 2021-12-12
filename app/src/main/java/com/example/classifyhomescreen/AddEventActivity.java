@@ -3,7 +3,9 @@ package com.example.classifyhomescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +36,7 @@ public class AddEventActivity extends AppCompatActivity {
     EditText friendText;
     Switch alertText;
     String type;
+    Calendar c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class AddEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
+                c = Calendar.getInstance();
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
@@ -67,6 +71,9 @@ public class AddEventActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         dateText.setText((monthOfYear + 1)+ "/" + dayOfMonth + "/" + year);
+                        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        c.set(Calendar.YEAR, year);
+                        c.set(Calendar.MONTH, monthOfYear);
                     }
                 }, year, month, day);
                 picker.show();
@@ -86,6 +93,9 @@ public class AddEventActivity extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
                                 timeText.setText(sHour + ":" + sMinute);
+                                c.set(Calendar.HOUR_OF_DAY, sHour);
+                                c.set(Calendar.MINUTE, sMinute);
+                                c.set(Calendar.SECOND, 0);
                             }
                         }, hour, minutes, true);
                 timePicker.show();
@@ -148,14 +158,22 @@ public class AddEventActivity extends AppCompatActivity {
         if(noteid == -1 && datePresent) {
             //send email to friend functionality should go here (email variable contains the email of friend)
             //alert stuff goes here too
-            if(alert) {
 
-            }
 
 
             dbHelper.saveEvent("username", date, location, time, title, type, total_num_notes);
             System.out.println("t:"+total_num_notes);
             total_num_notes++;
+            if(alert) {
+                //Notifications();
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(this, MyReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1,
+                        intent, 0);
+                //get time in millis
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),  pendingIntent);
+
+            }
         } else {
             if(datePresent) {
                 dbHelper.updateEvent("username", date, location, time, title, type, note_count);
