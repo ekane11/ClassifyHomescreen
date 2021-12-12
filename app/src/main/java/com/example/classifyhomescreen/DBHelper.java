@@ -14,7 +14,7 @@ public class DBHelper {
     }
 
     public void createTable() {
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS events" + "(id INTEGER PRIMARY KEY, username TEXT, date TEXT, location TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS events" + "(id INTEGER PRIMARY KEY, username TEXT, title TEXT, date TEXT, time TEXT, type TEXT, location TEXT, count TEXT, src TEXT)");
     }
 
     public ArrayList<Event> readNotes(String username) {
@@ -22,8 +22,12 @@ public class DBHelper {
         createTable();
         Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * from events where username like '%s'", username), null);
 
+        int titleIndex = c.getColumnIndex("title");
         int dateIndex = c.getColumnIndex("date");
         int locationIndex = c.getColumnIndex("location");
+        int timeIndex = c.getColumnIndex("time");
+        int typeIndex = c.getColumnIndex("type");
+        int countIndex = c.getColumnIndex("count");
 
         c.moveToFirst();
         ArrayList<Event> eventsList = new ArrayList<>();
@@ -32,8 +36,12 @@ public class DBHelper {
 
             String date = c.getString(dateIndex);
             String location = c.getString(locationIndex);
+            String title = c.getString(titleIndex);
+            String time = c.getString(timeIndex);
+            String type = c.getString(typeIndex);
+            int count = c.getInt(countIndex);
 
-            Event event = new Event(username, date, location, false, null);
+            Event event = new Event(title, date, time, location, false, null, type, count);
             eventsList.add(event);
             c.moveToNext();
         }
@@ -42,14 +50,14 @@ public class DBHelper {
         return eventsList;
     }
 
-    public void saveEvent(String username, String date, String location) {
+    public void saveEvent(String username, String date, String location, String time, String title, String type, int count) {
         createTable();
-        sqLiteDatabase.execSQL(String.format("INSERT INTO events (username, date, location) VALUES ('%s', '%s', '%s')", username, date, location));
+        sqLiteDatabase.execSQL(String.format("INSERT INTO events (username, title, date, time, location, type, count) VALUES ('%s', '%s', '%s','%s','%s','%s', '%s')", username, title, date, time, location, type, count));
     }
 
-    public void updateEvent(String username, String date, String location) {
+    public void updateEvent(String username, String date, String location, String time, String title, String type, int count) {
         createTable();
-        sqLiteDatabase.execSQL(String.format("UPDATE events set location = '%s', date = '%s' where username = '%s'", location, date, username));
+        sqLiteDatabase.execSQL(String.format("UPDATE events set location = '%s', date = '%s', time = '%s', type = '%s', count = '%s' where username = '%s' and title = '%s'", location, date, time, type, count, username, title));
     }
 
 }

@@ -6,67 +6,69 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class WorkEventsActivity extends AppCompatActivity {
+public class CalendarDisplay extends AppCompatActivity {
 
+    private TextView theDate;
     public static ArrayList<Event> events = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_work_events);
+        setContentView(R.layout.activity_calendar_display);
+        theDate = (TextView) findViewById(R.id.DateDisplay);
+
+        Intent incomingIntent = getIntent();
+        String date = incomingIntent.getStringExtra("date");
+        theDate.setText(date);
 
         Context context = getApplicationContext();
-        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events", Context.MODE_PRIVATE,null);
+        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events",
+                Context.MODE_PRIVATE, null);
 
         DBHelper dbHelper = new DBHelper(sqLiteDatabase);
+        //Have to change username
         events = dbHelper.readNotes("username");
 
-
         ArrayList<String> displayEvents = new ArrayList<>();
-        ArrayList<Event> workEvents = new ArrayList<Event>();
-        for(Event event: events) {
-            if (event.getType().equals("work")) {
-                displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
-                workEvents.add(event);
+        ArrayList<Event> clickEvents = new ArrayList<>();
+        for(Event event: events){
+            //Find out what other data to display
+            if(event.getDate().equals(date)) {
+                displayEvents.add(String.format("Title:%s", event.getTitle()));
+                clickEvents.add(event);
             }
         }
 
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, displayEvents);
-        ListView listView = (ListView) findViewById(R.id.workEventsList);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,
+                displayEvents);
+        ListView listView = (ListView) findViewById(R.id.CalendarDisplayList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
-                int num = workEvents.get(position).getNum();
+                int num = clickEvents.get(position).getNum();
+                String type = clickEvents.get(position).getType();
                 intent.putExtra("noteid", position); //in the list of separate categories
                 intent.putExtra("note_num", num); //position in entire event
-                intent.putExtra("type", "work");
+                intent.putExtra("type", type);
                 //System.out.println(num);
                 startActivity(intent);
             }
         });
+
     }
 
-    public void onAddButtonClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
-        intent.putExtra("type", "work");
-        startActivity(intent);
+    public void back(View view){
+        finish();
     }
-
-    public void onBack(View v) {
-        Intent intent = new Intent(getApplicationContext(), Home.class);
-        startActivity(intent);
-    }
-
 }

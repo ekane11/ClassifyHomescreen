@@ -9,18 +9,6 @@
 
 
     <Button
-        android:id="@+id/other"
-
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="348dp"
-        android:backgroundTint="#E91E63"
-        android:text="Other" />
-
-    <Button
         android:id="@+id/work"
         android:onClick="workClick"
         android:layout_width="wrap_content"
