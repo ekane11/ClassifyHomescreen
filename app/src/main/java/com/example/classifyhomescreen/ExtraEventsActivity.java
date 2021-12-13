@@ -31,7 +31,7 @@ public class ExtraEventsActivity extends AppCompatActivity {
         ArrayList<String> displayEvents = new ArrayList<>();
         ArrayList<Event> extraEvents = new ArrayList<Event>();
         for(Event event: events) {
-            if (event.getType().equals("extra")) {
+            if (event.getType().equals("extra")&&event.getUsername().equals(Login.username)) {
                 displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
                 extraEvents.add(event);
             }

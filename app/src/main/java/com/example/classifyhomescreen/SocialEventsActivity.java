@@ -31,7 +31,7 @@ public class SocialEventsActivity extends AppCompatActivity {
         ArrayList<String> displayEvents = new ArrayList<>();
         ArrayList<Event> socialEvents = new ArrayList<Event>();
         for(Event event: events) {
-            if (event.getType().equals("social")) {
+            if (event.getType().equals("social")&&event.getUsername().equals(Login.username)) {
                 displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
                 socialEvents.add(event);
             }

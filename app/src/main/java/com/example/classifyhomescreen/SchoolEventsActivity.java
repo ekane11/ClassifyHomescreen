@@ -31,7 +31,7 @@ public class SchoolEventsActivity extends AppCompatActivity {
         ArrayList<String> displayEvents = new ArrayList<>();
         ArrayList<Event> schoolEvents = new ArrayList<Event>();
         for(Event event: events) {
-            if (event.getType().equals("school")) {
+            if (event.getType().equals("school")&&event.getUsername().equals(Login.username)) {
                 displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
                 schoolEvents.add(event);
             }
