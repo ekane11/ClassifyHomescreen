@@ -16,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class Login extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -25,6 +27,8 @@ public class Login extends AppCompatActivity {
     String password1;
     public static String username;
     private static final String TAG = "EmailPassword";
+    public static ArrayList<String> usernameList = new ArrayList<>();
+    public static int username_index = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,8 @@ public class Login extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -94,11 +100,6 @@ public class Login extends AppCompatActivity {
 
         }
     }
-
-    public String getUsername() {
-        return username;
-    }
-
 
     public void resetPasswordClickFunction(View view){
         Intent intent = new Intent(this, ResetPassword.class);

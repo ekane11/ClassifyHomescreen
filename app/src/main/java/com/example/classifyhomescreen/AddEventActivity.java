@@ -27,7 +27,7 @@ public class AddEventActivity extends AppCompatActivity {
 
     private int noteid = -1;
     private int note_count;
-    private static int total_num_notes = 0;
+    private static int total_num_notes = -1;
     DatePickerDialog picker;
     TimePickerDialog timePicker;
     EditText dateText;
@@ -104,6 +104,7 @@ public class AddEventActivity extends AppCompatActivity {
                 timePicker.show();
             }
         });
+
         if(noteid != -1) {
             switch (type) {
                 case "extra":
@@ -129,6 +130,7 @@ public class AddEventActivity extends AppCompatActivity {
                     break;
                 case "work":
                     Event workEvent = WorkEventsActivity.events.get(note_count);
+                    System.out.println(workEvent.getNum());
                     dateText.setText(workEvent.getDate());
                     locationText.setText(workEvent.getLocation());
                     timeText.setText(workEvent.getTime());
@@ -148,6 +150,7 @@ public class AddEventActivity extends AppCompatActivity {
         String email = friendText.getText().toString();
         boolean alert = alertText.isChecked();
         String friend = friendText.getText().toString();
+        System.out.println("f:"+friend);
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events", Context.MODE_PRIVATE,null);
@@ -157,15 +160,13 @@ public class AddEventActivity extends AppCompatActivity {
         if(date.length() < 8) {
             datePresent = false;
         }
-
-        System.out.println("n:"+note_count);
         if(noteid == -1 && datePresent) {
             //send email to friend functionality should go here (email variable contains the email of friend)
             //alert stuff goes here too
 
-
-            dbHelper.saveEvent(Login.username, date, location, time, title, type, total_num_notes);
             total_num_notes++;
+            dbHelper.saveEvent(Login.username, date, location, time, title, type, total_num_notes);
+
 //            Bundle params = new Bundle();
 //            String name = "Event";
 //            String text = title;
@@ -173,10 +174,12 @@ public class AddEventActivity extends AppCompatActivity {
 //            params.putString("full_text", text);
 //            mFirebaseAnalytics = FirebaseAuth.getInstance();
 //            mFirebaseAnalytics.logEvent("added_event", params);
-            if(friendText!=null) {
-                dbHelper.saveEvent(friend, date, location, time, title, type, total_num_notes);
+            if(!friend.matches("")) {
+
                 total_num_notes++;
-                friendText.setText(null);
+                System.out.println("f2: " + friend);
+                dbHelper.saveEvent(friend, date, location, time, title, type, total_num_notes);
+                friendText.setText("");
             }
             System.out.println("t:"+total_num_notes);
 

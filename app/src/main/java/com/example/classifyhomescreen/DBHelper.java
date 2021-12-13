@@ -17,10 +17,10 @@ public class DBHelper {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS events" + "(id INTEGER PRIMARY KEY, username TEXT, title TEXT, date TEXT, time TEXT, type TEXT, location TEXT, count TEXT, src TEXT)");
     }
 
-    public ArrayList<Event> readNotes(String username) {
+    public ArrayList<Event> readNotes(String username1) {
 
         createTable();
-        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * from events where username like '%s'", username), null);
+        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * from events" ), null);
 
         int titleIndex = c.getColumnIndex("title");
         int dateIndex = c.getColumnIndex("date");
@@ -28,6 +28,8 @@ public class DBHelper {
         int timeIndex = c.getColumnIndex("time");
         int typeIndex = c.getColumnIndex("type");
         int countIndex = c.getColumnIndex("count");
+        int usernameIndex = c.getColumnIndex("username");
+
 
         c.moveToFirst();
         ArrayList<Event> eventsList = new ArrayList<>();
@@ -40,8 +42,9 @@ public class DBHelper {
             String time = c.getString(timeIndex);
             String type = c.getString(typeIndex);
             int count = c.getInt(countIndex);
+            String username = c.getString(usernameIndex);
 
-            Event event = new Event(title, date, time, location, false, null, type, count);
+            Event event = new Event(username, title, date, time, location, false, null, type, count);
             eventsList.add(event);
             c.moveToNext();
         }
@@ -57,7 +60,8 @@ public class DBHelper {
 
     public void updateEvent(String username, String date, String location, String time, String title, String type, int count) {
         createTable();
-        sqLiteDatabase.execSQL(String.format("UPDATE events set location = '%s', date = '%s', time = '%s', type = '%s', count = '%s' where username = '%s' and title = '%s'", location, date, time, type, count, username, title));
+        sqLiteDatabase.execSQL(String.format("UPDATE events set location = '%s', date = '%s', time = '%s', type = '%s', title = '%s' where username = '%s' and count = '%s'", location, date, time, type, title, username,count));
     }
+
 
 }

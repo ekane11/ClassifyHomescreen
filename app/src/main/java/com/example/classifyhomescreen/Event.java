@@ -12,8 +12,9 @@ public class Event {
     private String type;
     private String friend;
     private int note_num = 0;
+    private String username;
 
-    public Event(String title, String date, String time, String location, boolean alert, String friend, String type, int count) {
+    public Event(String username, String title, String date, String time, String location, boolean alert, String friend, String type, int count) {
         this.date = date;
         this.time = time;
         this.location = location;
@@ -22,6 +23,7 @@ public class Event {
         this.type = type;
         this.note_num = count;
         this.friend = friend;
+        this.username = username;
     }
 
     public String getDate() {
@@ -47,5 +49,7 @@ public class Event {
     public String getType() {return this.type;}
 
     public int getNum() {return note_num; }
+
+    public String getUsername() {return this.username;}
 
 }
