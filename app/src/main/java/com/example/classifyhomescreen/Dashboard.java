@@ -65,10 +65,12 @@ public class Dashboard extends AppCompatActivity {
         ArrayList<Event> clickEvents = new ArrayList<>();
         ArrayList<Event> clickEvents2 = new ArrayList<>();
         for(Event event: events) {
-            displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
-            dateList.add(new DateItem(event.getDate()));
-            orgDateOrder.add(event.getDate());
-            clickEvents.add(event);
+            if(event.getUsername().equals(Login.username)) {
+                displayEvents.add(String.format("Title: %s\nDate: %s", event.getTitle(), event.getDate()));
+                dateList.add(new DateItem(event.getDate()));
+                orgDateOrder.add(event.getDate());
+                clickEvents.add(event);
+            }
         }
 
         Collections.sort(dateList, new sortItems());

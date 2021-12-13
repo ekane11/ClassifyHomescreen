@@ -41,7 +41,7 @@ public class CalendarDisplay extends AppCompatActivity {
         ArrayList<Event> clickEvents = new ArrayList<>();
         for(Event event: events){
             //Find out what other data to display
-            if(event.getDate().equals(date)) {
+            if(event.getDate().equals(date)&&event.getUsername().equals(Login.username)) {
                 displayEvents.add(String.format("Title:%s", event.getTitle()));
                 clickEvents.add(event);
             }
