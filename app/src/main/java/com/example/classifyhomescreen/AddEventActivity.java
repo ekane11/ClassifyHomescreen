@@ -176,6 +176,7 @@ public class AddEventActivity extends AppCompatActivity {
             if(friendText!=null) {
                 dbHelper.saveEvent(friend, date, location, time, title, type, total_num_notes);
                 total_num_notes++;
+                friendText.setText(null);
             }
             System.out.println("t:"+total_num_notes);
 
