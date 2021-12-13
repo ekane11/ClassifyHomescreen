@@ -94,4 +94,8 @@ public class Login extends AppCompatActivity {
     }
 
 
+    public void resetPasswordClickFunction(View view){
+        Intent intent = new Intent(this, ResetPassword.class);
+        startActivity(intent);
+    }
 }

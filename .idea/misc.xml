@@ -35,9 +35,11 @@
         <entry key="..\:/Users/hankj/AndroidStudioProjects/ClassifyHomescreen/app/src/main/res/layout/activity_works_events.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_alerts.xml" value="0.12183383991894631" />
         <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_create_account.xml" value="0.12183383991894631" />
+        <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_extra_events.xml" value="0.2546875" />
         <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_home.xml" value="0.15989583333333332" />
         <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_login.xml" value="0.12183383991894631" />
-        <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_profile.xml" value="0.12183383991894631" />
+        <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_profile.xml" value="0.3" />
+        <entry key="..\:/Users/tater/Documents/ClassifyHomescreen/app/src/main/res/layout/activity_reset_password.xml" value="0.2546875" />
       </map>
     </option>
   </component>

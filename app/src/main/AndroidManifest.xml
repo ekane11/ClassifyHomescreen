@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClassifyHomescreen">
         <activity
+            android:name=".ResetPassword"
+            android:exported="true" />
+        <activity
             android:name=".CalendarDisplay"
             android:exported="false" />
         <activity
