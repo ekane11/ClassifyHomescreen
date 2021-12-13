@@ -23,6 +23,7 @@ public class Login extends AppCompatActivity {
     EditText password;
     String email1;
     String password1;
+    public static String username;
     private static final String TAG = "EmailPassword";
 
     @Override
@@ -59,6 +60,7 @@ public class Login extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         email1 = email.getText().toString();
         password1 = password.getText().toString();
+        username = email1;
 
         mAuth.signInWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -91,6 +93,10 @@ public class Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Not logged in properly.", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    public String getUsername() {
+        return username;
     }
 
 

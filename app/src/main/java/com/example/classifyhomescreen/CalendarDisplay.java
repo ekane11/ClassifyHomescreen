@@ -35,7 +35,7 @@ public class CalendarDisplay extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(sqLiteDatabase);
         //Have to change username
-        events = dbHelper.readNotes("username");
+        events = dbHelper.readNotes(Login.username);
 
         ArrayList<String> displayEvents = new ArrayList<>();
         ArrayList<Event> clickEvents = new ArrayList<>();

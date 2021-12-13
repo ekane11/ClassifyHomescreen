@@ -147,6 +147,7 @@ public class AddEventActivity extends AppCompatActivity {
         String time = timeText.getText().toString();
         String email = friendText.getText().toString();
         boolean alert = alertText.isChecked();
+        String friend = friendText.getText().toString();
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events", Context.MODE_PRIVATE,null);
@@ -163,8 +164,8 @@ public class AddEventActivity extends AppCompatActivity {
             //alert stuff goes here too
 
 
-
-            dbHelper.saveEvent(mAuth.getCurrentUser().getEmail().toString(), date, location, time, title, type, total_num_notes);
+            dbHelper.saveEvent(Login.username, date, location, time, title, type, total_num_notes);
+            total_num_notes++;
 //            Bundle params = new Bundle();
 //            String name = "Event";
 //            String text = title;
@@ -172,9 +173,12 @@ public class AddEventActivity extends AppCompatActivity {
 //            params.putString("full_text", text);
 //            mFirebaseAnalytics = FirebaseAuth.getInstance();
 //            mFirebaseAnalytics.logEvent("added_event", params);
-            dbHelper.saveEvent(email, date, location, time, title, type, total_num_notes);
+            if(friendText!=null) {
+                dbHelper.saveEvent(friend, date, location, time, title, type, total_num_notes);
+                total_num_notes++;
+            }
             System.out.println("t:"+total_num_notes);
-            total_num_notes++;
+
             if(alert) {
                 //Notifications();
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -187,7 +191,7 @@ public class AddEventActivity extends AppCompatActivity {
             }
         } else {
             if(datePresent) {
-                dbHelper.updateEvent(mAuth.getCurrentUser().getEmail().toString(), date, location, time, title, type, note_count);
+                dbHelper.updateEvent(Login.username, date, location, time, title, type, note_count);
             }
         }
 

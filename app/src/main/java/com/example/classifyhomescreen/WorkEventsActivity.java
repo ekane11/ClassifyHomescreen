@@ -27,7 +27,7 @@ public class WorkEventsActivity extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("events", Context.MODE_PRIVATE,null);
 
         DBHelper dbHelper = new DBHelper(sqLiteDatabase);
-        events = dbHelper.readNotes("username");
+        events = dbHelper.readNotes(Login.username);
 
 
         ArrayList<String> displayEvents = new ArrayList<>();
