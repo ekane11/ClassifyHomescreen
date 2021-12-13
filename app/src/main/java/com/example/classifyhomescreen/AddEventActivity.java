@@ -19,6 +19,7 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
@@ -37,13 +38,15 @@ public class AddEventActivity extends AppCompatActivity {
     Switch alertText;
     String type;
     Calendar c;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-
+        mAuth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
         noteid = intent.getIntExtra("noteid", -1);
         note_count = intent.getIntExtra("note_num", -1);
@@ -161,7 +164,15 @@ public class AddEventActivity extends AppCompatActivity {
 
 
 
-            dbHelper.saveEvent("username", date, location, time, title, type, total_num_notes);
+            dbHelper.saveEvent(mAuth.getCurrentUser().getEmail().toString(), date, location, time, title, type, total_num_notes);
+//            Bundle params = new Bundle();
+//            String name = "Event";
+//            String text = title;
+//            params.putString("image_name", name);
+//            params.putString("full_text", text);
+//            mFirebaseAnalytics = FirebaseAuth.getInstance();
+//            mFirebaseAnalytics.logEvent("added_event", params);
+            dbHelper.saveEvent(email, date, location, time, title, type, total_num_notes);
             System.out.println("t:"+total_num_notes);
             total_num_notes++;
             if(alert) {
@@ -176,7 +187,7 @@ public class AddEventActivity extends AppCompatActivity {
             }
         } else {
             if(datePresent) {
-                dbHelper.updateEvent("username", date, location, time, title, type, note_count);
+                dbHelper.updateEvent(mAuth.getCurrentUser().getEmail().toString(), date, location, time, title, type, note_count);
             }
         }
 
