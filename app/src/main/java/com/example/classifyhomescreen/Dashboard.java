@@ -89,16 +89,25 @@ public class Dashboard extends AppCompatActivity {
                 if(dateList.get(i).returnDate().equals(formatDate)){
                     finalDisplay.add(displayEvents.get(j));
                     clickEvents2.add(clickEvents.get(j));
+                    /**
                     displayEvents.remove(j);
                     j--;
                     break;
+                     **/
                 }
             }
         }
+
         System.out.println(finalDisplay.size());
+        ArrayList<String> finalArray = new ArrayList<>();
+        for(String s : finalDisplay){
+            if(!finalArray.contains(s)){
+                finalArray.add(s);
+            }
+        }
 
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, finalDisplay);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, finalArray);
         ListView listView = findViewById(R.id.DashListView);
         listView.setAdapter(adapter);
 
